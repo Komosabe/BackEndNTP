@@ -10,12 +10,14 @@ using System.Security.Cryptography;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authorization;
+using BackEndTutorialNTP.Models.Register;
 
 namespace BackEndTutorialNTP.Controllers
 {
-    [ApiController]
     [Route("[controller]")]
-    public class FamilyMemberController : Controller
+    [ApiController]
+    public class FamilyMemberController : ControllerBase
     {
 
         private readonly IFamilyMemberService _familyMemberService;
@@ -32,35 +34,35 @@ namespace BackEndTutorialNTP.Controllers
             _configuration = configuration;
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         public IActionResult GetAllFamilyMembers()
         {
             var familyMembers = _familyMemberService.GetAll();
             return Ok(familyMembers);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize]
         public IActionResult GetByIdFamilyMember(int id)
         {
             var familyMember = _familyMemberService.GetById(id);
             return Ok(familyMember);
         }
 
-        [HttpPost]
+        [HttpPost, Authorize]
         public IActionResult CreateFamilyMember(CreateRequestFamilyMember model)
         {
             _familyMemberService.Create(model);
             return Ok(new { message = "Family member created" });
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         public IActionResult UpdateFamilyMember(int id, UpdateRequestFamilyMember model)
         {
             _familyMemberService.Update(id, model);
             return Ok(new { message = "Family member updated" });
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         public IActionResult DeleteFamilyMember(int id)
         {
             _familyMemberService.Delete(id);
@@ -68,7 +70,7 @@ namespace BackEndTutorialNTP.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<FamilyMember>> Register(CreateRequestFamilyMember request)
+        public async Task<ActionResult<FamilyMember>> Register(CreateRequestRegister request)
         {
             CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
@@ -80,7 +82,7 @@ namespace BackEndTutorialNTP.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(CreateRequestFamilyMember request)
+        public async Task<ActionResult<string>> Login(CreateRequestRegister request)
         {
             if (familyMember.Username != request.Username)
             {
@@ -97,12 +99,11 @@ namespace BackEndTutorialNTP.Controllers
             return Ok(token);
         }
 
-        private string CreateToken(FamilyMember user)
+        private string CreateToken(FamilyMember familyMember) 
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Role, "Admin")
+                new Claim(ClaimTypes.Name, familyMember.Username),
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(

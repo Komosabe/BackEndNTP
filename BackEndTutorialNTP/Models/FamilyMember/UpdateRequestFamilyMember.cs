@@ -19,7 +19,7 @@ namespace BackEndTutorialNTP.Models.FamilyMember
         public string? PostalCode { get; set; }
         public int? GroupId { get; set; }
 
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string? Username { get; set; }
+        public string? Password { get; set; }
     }
 }

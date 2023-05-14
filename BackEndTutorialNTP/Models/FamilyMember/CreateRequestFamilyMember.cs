@@ -24,9 +24,5 @@ namespace BackEndTutorialNTP.Models.FamilyMember
         public string? City { get; set; }
         public string? PostalCode { get; set; }
         public int? GroupId { get; set; }
-        [Required]
-        public string Username { get; set; }
-        [Required]
-        public string Password { get; set; }
     }
 }

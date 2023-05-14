@@ -3,6 +3,7 @@ using BackEndTutorialNTP.Data;
 using BackEndTutorialNTP.Entities;
 using BackEndTutorialNTP.Interfaces;
 using BackEndTutorialNTP.Models.FamilyMember;
+using BackEndTutorialNTP.Models.Register;
 
 namespace BackEndTutorialNTP.Services
 {
@@ -37,6 +38,24 @@ namespace BackEndTutorialNTP.Services
             var familyMember = _mapper.Map<FamilyMember>(model);
 
             _context.FamilyMembers.Add(familyMember);
+            _context.SaveChanges();
+        }
+
+        public void CreateRegister(CreateRequestRegister model)
+        {
+            var familyMember = _mapper.Map<FamilyMember>(model);
+
+            _context.FamilyMembers.Add(familyMember);
+            _context.SaveChanges();
+        }
+
+        public void UpdateRegister(int id, UpdateRequestRegister model)
+        {
+            var familyMember = getFamilyMember(id);
+
+            // copy model to user and save
+            _mapper.Map(model, familyMember);
+            _context.FamilyMembers.Update(familyMember);
             _context.SaveChanges();
         }
 

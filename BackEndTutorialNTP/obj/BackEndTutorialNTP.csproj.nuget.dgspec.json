@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projekty - Programowe\\BackEndTutorialNTP\\BackEndTutorialNTP\\BackEndTutorialNTP.csproj": {}
+    "D:\\Projekty - Git\\BackEndTutorialNTP\\BackEndTutorialNTP\\BackEndTutorialNTP.csproj": {}
   },
   "projects": {
-    "D:\\Projekty - Programowe\\BackEndTutorialNTP\\BackEndTutorialNTP\\BackEndTutorialNTP.csproj": {
+    "D:\\Projekty - Git\\BackEndTutorialNTP\\BackEndTutorialNTP\\BackEndTutorialNTP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projekty - Programowe\\BackEndTutorialNTP\\BackEndTutorialNTP\\BackEndTutorialNTP.csproj",
+        "projectUniqueName": "D:\\Projekty - Git\\BackEndTutorialNTP\\BackEndTutorialNTP\\BackEndTutorialNTP.csproj",
         "projectName": "BackEndTutorialNTP",
-        "projectPath": "D:\\Projekty - Programowe\\BackEndTutorialNTP\\BackEndTutorialNTP\\BackEndTutorialNTP.csproj",
+        "projectPath": "D:\\Projekty - Git\\BackEndTutorialNTP\\BackEndTutorialNTP\\BackEndTutorialNTP.csproj",
         "packagesPath": "C:\\Users\\Macie\\.nuget\\packages\\",
-        "outputPath": "D:\\Projekty - Programowe\\BackEndTutorialNTP\\BackEndTutorialNTP\\obj\\",
+        "outputPath": "D:\\Projekty - Git\\BackEndTutorialNTP\\BackEndTutorialNTP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Macie\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[12.0.1, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.16, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.5, )"
@@ -69,6 +73,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
+            },
+            "Swashbuckle.AspNetCore.Filters": {
+              "target": "Package",
+              "version": "[6.0.1, )"
             }
           },
           "imports": [
