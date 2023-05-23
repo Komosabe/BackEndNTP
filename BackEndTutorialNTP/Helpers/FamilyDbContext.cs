@@ -1,7 +1,8 @@
 ﻿using BackEndTutorialNTP.Entities;
 using Microsoft.EntityFrameworkCore;
+using WebApi.Entities;
 
-namespace BackEndTutorialNTP.Data
+namespace BackEndTutorialNTP.Helpers
 {
     public class FamilyDbContext : DbContext
     {
@@ -9,9 +10,10 @@ namespace BackEndTutorialNTP.Data
         {
 
         }
-        
+
         public DbSet<FamilyMember> FamilyMembers { get; set; }
         public DbSet<Group> Groups { get; set; }
+        public DbSet<User> Users { get; set; }
         // to nizej do usuniecia teraz
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{

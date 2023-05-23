@@ -1,5 +1,5 @@
-﻿using BackEndTutorialNTP.Data;
-using BackEndTutorialNTP.Entities;
+﻿using BackEndTutorialNTP.Entities;
+using BackEndTutorialNTP.Helpers;
 using BackEndTutorialNTP.Models;
 
 namespace BackEndTutorialNTP.Seeders

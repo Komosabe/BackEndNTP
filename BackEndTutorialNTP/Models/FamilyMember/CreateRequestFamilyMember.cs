@@ -18,9 +18,6 @@ namespace BackEndTutorialNTP.Models.FamilyMember
         [MinLength(8)]
         public string? PhoneNumber { get; set; }
         public string? Street { get; set; }
-
-        [EmailAddress]
-        public string? Email { get; set; }
         public string? City { get; set; }
         public string? PostalCode { get; set; }
         public int? GroupId { get; set; }

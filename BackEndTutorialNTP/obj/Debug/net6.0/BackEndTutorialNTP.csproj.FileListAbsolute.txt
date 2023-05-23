@@ -181,3 +181,5 @@ D:\Projekty - Git\BackEndTutorialNTP\BackEndTutorialNTP\bin\Debug\net6.0\Newtons
 D:\Projekty - Git\BackEndTutorialNTP\BackEndTutorialNTP\bin\Debug\net6.0\Scrutor.dll
 D:\Projekty - Git\BackEndTutorialNTP\BackEndTutorialNTP\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll
 D:\Projekty - Git\BackEndTutorialNTP\BackEndTutorialNTP\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.dll
+D:\Projekty - Git\BackEndTutorialNTP\BackEndTutorialNTP\bin\Debug\net6.0\omnisharp.json
+D:\Projekty - Git\BackEndTutorialNTP\BackEndTutorialNTP\bin\Debug\net6.0\BCrypt.Net-Next.dll

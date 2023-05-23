@@ -1,12 +1,11 @@
-﻿using AutoMapper;
-using BackEndTutorialNTP.Interfaces;
-using BackEndTutorialNTP.Models.FamilyMember;
+﻿using BackEndTutorialNTP.Interfaces;
 using BackEndTutorialNTP.Models.Group;
-using BackEndTutorialNTP.Services;
 using Microsoft.AspNetCore.Mvc;
+using BackEndTutorialNTP.Authorization;
 
 namespace BackEndTutorialNTP.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class GroupController : Controller

@@ -1,4 +1,5 @@
-using BackEndTutorialNTP.Data;
+using BackEndTutorialNTP.Authorization;
+using BackEndTutorialNTP.Helpers;
 using BackEndTutorialNTP.Interfaces;
 using BackEndTutorialNTP.Seeders;
 using BackEndTutorialNTP.Services;
@@ -9,6 +10,7 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System.Reflection;
 using System.Text;
+using BackEndTutorialNTP.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,52 +19,50 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<FamilyDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("BackEndTutorialNTP")));//
 
+builder.Services.AddCors();
 builder.Services.AddControllers();
 
-builder.Services.AddSwaggerGen(options =>
-{
-    options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
-    {
-        Description = "Standard Authorization header using the Bearer scheme (\"bearer {token}\")",
-        In = ParameterLocation.Header,
-        Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey
-    });
+// configure strongly typed settings object
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
-    options.OperationFilter<SecurityRequirementsOperationFilter>();
-});
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
-                .GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value)),
-            ValidateIssuer = false,
-            ValidateAudience = false
-        };
-    });
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddAuthentication();
 
 builder.Services.AddScoped<FamilyMemberSeeder>();
 
-builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
+builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddScoped<IFamilyMemberService, FamilyMemberService>();
 builder.Services.AddScoped<IGroupService, GroupService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IJwtUtils, JwtUtils>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 
 var app = builder.Build();
 
+// configure HTTP request pipeline
+{
+    // global cors policy
+    app.UseCors(x => x
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
+
+    // custom jwt auth middleware
+    app.UseMiddleware<JwtMiddleware>();
+
+    app.MapControllers();
+}
+
 //Add configure of seeder
 var scope = app.Services.CreateScope();
 var seeder = scope.ServiceProvider.GetRequiredService<FamilyMemberSeeder>();
 await seeder.Seed();
 
-// Configure the HTTP request pipeline.
+//Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -78,3 +78,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+//app.Run("http://localhost:4000");
