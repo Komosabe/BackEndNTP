@@ -3,7 +3,7 @@ using BackEndTutorialNTP.Authorization;
 using BackEndTutorialNTP.Helpers;
 using BackEndTutorialNTP.Models.Users;
 using BackEndTutorialNTP.Models;
-using WebApi.Entities;
+using BackEndTutorialNTP.Entities;
 
 namespace BackEndTutorialNTP.Services;
 

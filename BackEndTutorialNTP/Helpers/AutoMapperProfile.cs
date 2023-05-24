@@ -2,10 +2,8 @@
 using BackEndTutorialNTP.Entities;
 using BackEndTutorialNTP.Models.FamilyMember;
 using BackEndTutorialNTP.Models.Group;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Net;
 using BackEndTutorialNTP.Models;
-using WebApi.Entities;
 using BackEndTutorialNTP.Models.Users;
 
 namespace BackEndTutorialNTP.Helpers
@@ -19,9 +17,6 @@ namespace BackEndTutorialNTP.Helpers
 
             CreateMap<UpdateRequestGroup, Group>();
             CreateMap<CreateRequestGroup, Group>();
-
-
-
 
             // User -> AuthenticateResponse
             CreateMap<User, AuthenticateResponse>();
