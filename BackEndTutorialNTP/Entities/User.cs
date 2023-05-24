@@ -1,4 +1,4 @@
-﻿namespace WebApi.Entities;
+﻿namespace BackEndTutorialNTP.Entities;
 
 using System.Text.Json.Serialization;
 

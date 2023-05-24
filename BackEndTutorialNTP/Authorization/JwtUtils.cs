@@ -1,11 +1,10 @@
-﻿using BackEndTutorialNTP.Entities;
-using BackEndTutorialNTP.Helpers;
+﻿using BackEndTutorialNTP.Helpers;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using WebApi.Entities;
+using BackEndTutorialNTP.Entities;
 
 namespace BackEndTutorialNTP.Authorization;
 
